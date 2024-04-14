@@ -1,0 +1,276 @@
+.usercontainer{
+  width: 100vw;
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userAuthentication{
+  margin: 10px 0px;
+  padding: 0px 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  /* height: 100vh; */
+}
+
+.signinContent,
+.signupContent{
+  width: 85%;
+  
+}
+
+.signupContent{
+  /* margin-top: 30px; */
+}
+
+.signin,
+.signup {
+  /* width: 450px; */
+  width: 55%;
+  height: 85%;
+  /* height: 600px; */
+  /* padding: 20px; */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex; 
+  transition: .10s;
+}
+
+.signInImage{
+  padding-top: 70px !important;
+}
+
+.userImageContainer{
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 35px;
+  align-items: center;
+  background: rgb(226,224,255);
+  background: linear-gradient(90deg, rgba(226,224,255,1) 0%, rgba(0,100,224,1) 100%);
+  
+}
+
+.userImageContainer img{
+  margin: 25px 0px;
+  
+}
+
+.bannerIcon{
+  width: 80%;
+}
+.formTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-bottom: 10px; */
+}
+
+.userTypeTabs{
+  margin:  10px 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.userTypeBtnBox{
+  display: flex;
+  height: 35px;
+    width: 300px;
+    margin: 19px 5px;
+    box-shadow:0 0 0.25em 0.25em #bad9ff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  
+  /* border-bottom: 1px solid #ccc; */
+
+}
+
+.userTypeBtnBox button{
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+  /* background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 10px; */
+  /* border: 1px solid #ccc; */
+  /* cursor: pointer;
+  padding: 14px 16px;
+  margin-right: 30px;
+  font-size: 15px;
+  font-weight: 600; */
+
+}
+
+.slider {
+  height: 35px;
+  width: 160px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #70a8ec 0%, #0064E0 100%);
+  position: absolute;
+  top: 19px;
+  left: 0px;
+  transition: all 0.5s ease-in-out;
+}
+
+.moveslider {
+  left: 145px;
+}
+
+.activeUserType{
+  color : white;
+  transition: background-color 0.3s, color 0.3s,box-shadow 0.3s; 
+}
+.formGroup {
+  /* position: absolute;
+  top: 0;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; */
+  margin-top:40px;
+  position: relative;
+  width: 92%;
+  height: 50px;
+}
+
+.formGroup input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #36354b;
+  font-weight: 600;
+  border-bottom: 2px solid #0064E0;
+  padding-right: 23px ;
+}
+
+.formGroup label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #2c2b2b ;
+  transition: .5s;
+}
+
+.formGroup input:focus + label , 
+.formGroup input:valid + label {
+  top: -5px; /* Adjust this value based on your design */
+  color: #212020 ;
+}
+
+.formGroup  .input-icon{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 18px;
+    transform: translateY(-50%);
+    color: #2f2e41;
+    transition: .5s;
+}
+
+.formGroup input:focus + .input-icon { /* Adjust this value based on your design */
+  color: #0064E0 ;
+}
+.formButton{
+  margin: 25px;
+}
+
+.signupImageLink,
+.signinImageLink{
+  background: white;
+  padding: 10px 20px;
+  border-radius: 20px; 
+  
+  border-width: 1px;
+  border-color: #0064E0;
+}
+
+/* .label {
+  font-weight: bold;
+} */
+/* 
+input .input-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+} */
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0064E0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.errMsg {
+  color: red;
+  margin-top: 10px;
+}
+
+.instructions {
+  color: #888;
+  margin-top: 5px;
+}
+
+.hide {
+  display: none;
+}
+
+
+
+.valid {
+  margin-left: 5px;
+  font-size: 12px;
+   color: rgba(15, 126, 15, 0.848);
+}
+
+.invalid {
+  margin-left: 5px;
+  font-size: 12px;
+  color: rgba(255, 59, 59, 0.889);
+}
+
+.errMsg{
+  /* background-color: red; */
+}
+
+.hide{
+   display: none;
+   /* border-color: red; */
+}
+
+.valid{
+  border: 1px soild green;
+}
+
+.offscreen{
+  display: none;
+}
+ 

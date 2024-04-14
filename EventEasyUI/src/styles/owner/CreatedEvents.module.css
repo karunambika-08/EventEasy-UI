@@ -1,0 +1,81 @@
+.displayCreatedEvent {
+    padding:10px ;
+}
+.tabs{
+
+    /* height: 450px; */
+    position: relative;
+  
+    overflow: hidden;
+  }
+  
+  .btnBox{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+
+  }
+
+  
+  .activeTab{
+    color : #0064E0;
+    transition: background-color 0.3s, color 0.3s,box-shadow 0.3s; 
+  }
+
+  .content .displayTab{
+    display: block;
+  }
+  
+  .btnBox button{
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 14px 16px;
+    margin-right: 50px;
+    font-size: 20px;
+    font-weight: 600;
+  
+  }
+
+  .onGoing{
+    color : #0064E0;
+  }
+
+  .completed{
+    color: #0064E0;
+  }
+
+  .activeTab .tabIcon{
+    margin: 20px !important;
+  }
+  
+  .btnBox button:hover{
+   background-color: #0065e000;  
+   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .content{
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: 3% auto;
+    /* position: absolute;
+    transform: translateX(100%); */
+  }
+  
+  #content2{
+    display: none;
+    background-color: #0064E0;
+  }
+/*   
+  #btn1{
+    color: #0064E0;
+  } */
+  
+
+  .hideTab{
+    display: none;
+  }
+
+
