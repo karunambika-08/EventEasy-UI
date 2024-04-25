@@ -1,43 +1,25 @@
-// import {FaArrowCircleLeft } from 'react-icons/fa'
-import styles from '../styles/Header.module.css'
-import { useNavigate } from 'react-router-dom';
+// Packages and Hooks
+import { FaUserAlt } from 'react-icons/fa';
+/**
+ * @param {*} props To handle Sidbar opening and closing
+ * @returns 
+ */
 function Header(props) {
-  const {username ,isOpen ,action} = props
-  console.log("Username", username);
-    // function logoutUser() {
-    //     let logoutUser = document.getElementById('logoutbtn');
-    //     logoutUser.addEventListener('click', () => {
-    //         localStorage.removeItem("currentUser");
-    //         window.location.href = "../../html/main/signIn.html";
-    //     })
-    // }
-    const navigate = useNavigate()
-  
-    function logout(){
-      navigate('/')
-    }
-  return (
-  
-         <div className={"navbarContainer"}>
-            <nav className={"navigation"}>
-              <div className={"logoContainer"}>
-                <h1 className={"logo"}>{!isOpen ? "EventEasy" : ""}</h1>
-              </div>
-              <div className={"menulist"}> 
-                <div className={"userdropdown"}>
-                  <div   className={`${"menulistItems"} ${"userProfile"}`} style={action === 'nouserName' ? {display: 'none' } : {display:'flex'}}>
-                    <div className= {"menuLink"} id="userProfileName">{username}</div>
-                  </div>
+  const { username, isSideNavbarOpen, action } = props
 
-                </div>
-                <div className="dropdownContent">
-                  {/* <button   className="dropdownitems"  id="logoutbtn" onClick={logout} style={{background:"none" , border:"1px soild #0064E0"}}> Logout </button> */}
-            </div>
-              </div>
-            </nav>
-          </div>
-    
-    
+  return (
+
+    <div className={"mainHeaderContainer"}>
+      <div className={"headerContent"}>
+        <div className={"logoContainer"}>
+          {/* Display logo in header only if the events open */}
+          <h1 className={"headerLogo"}>{!isSideNavbarOpen ? "EventEasy" : ""}</h1>
+        </div>
+        <div className={`${"currentUsernameContainer"}`} style={action === 'nouserName' ? { display: 'none' } : { display: 'flex' }}>
+          <div className={"currentUserName"} ><FaUserAlt className='headerIcon'></FaUserAlt> <p> {username}</p></div>
+        </div>
+      </div>
+    </div>
   )
 }
 

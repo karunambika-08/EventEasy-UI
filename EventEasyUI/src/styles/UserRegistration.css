@@ -1,4 +1,19 @@
-.usercontainer{
+:root {
+  --primary-color: #0a66c2;
+  --secondary-color: #09509b;
+  --text-color-dark: #0b2546;
+  --text-color-light: ;
+  /* 500 */
+  --border-color: #09509b;
+  --text-color-light: #e1eefd;
+  /* 200 */
+  --background-color-light: #09509b;
+  --hover-color: #e1eefd;
+  --hover-color-light: #e1eefd;
+  --hover-text: #409EF0;
+}
+
+.usercontainer {
   width: 100vw;
   height: 88vh;
   display: flex;
@@ -6,7 +21,7 @@
   align-items: center;
 }
 
-.userAuthentication{
+.userAuthentication {
   margin: 10px 0px;
   padding: 0px 10px;
 }
@@ -17,101 +32,82 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  /* height: 100vh; */
 }
 
 .signinContent,
-.signupContent{
+.signupContent {
   width: 85%;
-  
+
 }
 
-.signupContent{
-  /* margin-top: 30px; */
-}
 
 .signin,
 .signup {
-  /* width: 450px; */
   width: 55%;
   height: 85%;
-  /* height: 600px; */
-  /* padding: 20px; */
   border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex; 
+  border-radius: 15px;
+  display: flex;
   transition: .10s;
 }
 
-.signInImage{
+.signInImage {
   padding-top: 70px !important;
 }
 
-.userImageContainer{
+.userImageContainer {
 
   height: 100%;
   display: flex;
   flex-direction: column;
   padding-top: 35px;
+  border-radius: 10px;
   align-items: center;
-  background: rgb(226,224,255);
-  background: linear-gradient(90deg, rgba(226,224,255,1) 0%, rgba(0,100,224,1) 100%);
-  
+  background: rgb(226, 224, 255);
+  background: linear-gradient(90deg, rgba(0, 101, 224, 0.366)0%, rgba(0, 101, 224, 0.848)100%)
+
+
 }
 
-.userImageContainer img{
+.userImageContainer img {
   margin: 25px 0px;
-  
+
 }
 
-.bannerIcon{
+.bannerIcon {
   width: 80%;
 }
+
 .formTitle {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-bottom: 10px; */
 }
 
-.userTypeTabs{
-  margin:  10px 0px;
+.userTypeTabs {
+  margin: 10px 0px;
   position: relative;
   overflow: hidden;
 }
 
-.userTypeBtnBox{
+.userTypeBtnBox {
   display: flex;
   height: 35px;
-    width: 300px;
-    margin: 19px 5px;
-    box-shadow:0 0 0.25em 0.25em #bad9ff;
-    border-radius: 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  
-  /* border-bottom: 1px solid #ccc; */
-
+  width: 300px;
+  margin: 19px 5px;
+  box-shadow: 0 0 0.25em 0.25em #bad9ff;
+  border-radius: 50px;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.userTypeBtnBox button{
+.userTypeBtnBox button {
   font-size: 16px;
   border: none;
   outline: none;
   background-color: transparent;
   position: relative;
   cursor: pointer;
-  /* background: transparent;
-  border: none;
-  outline: none;
-  border-radius: 10px; */
-  /* border: 1px solid #ccc; */
-  /* cursor: pointer;
-  padding: 14px 16px;
-  margin-right: 30px;
-  font-size: 15px;
-  font-weight: 600; */
 
 }
 
@@ -119,7 +115,7 @@
   height: 35px;
   width: 160px;
   border-radius: 50px;
-  background: linear-gradient(90deg, #70a8ec 0%, #0064E0 100%);
+  background: var(--primary-color);
   position: absolute;
   top: 19px;
   left: 0px;
@@ -130,34 +126,29 @@
   left: 145px;
 }
 
-.activeUserType{
-  color : white;
-  transition: background-color 0.3s, color 0.3s,box-shadow 0.3s; 
+.activeUserType {
+  color: white;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
+
 .formGroup {
-  /* position: absolute;
-  top: 0;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column; */
-  margin-top:40px;
+  margin-top: 40px;
   position: relative;
   width: 92%;
   height: 50px;
 }
 
-.formGroup input{
+.formGroup input {
   width: 100%;
   height: 100%;
   background: transparent;
   border: none;
   outline: none;
   font-size: 16px;
-  color: #36354b;
+  color: var(--text-color-dark);
   font-weight: 600;
-  border-bottom: 2px solid #0064E0;
-  padding-right: 23px ;
+  border-bottom: 2px solid var(--primary-color);
+  padding-right: 23px;
 }
 
 .formGroup label {
@@ -166,66 +157,60 @@
   left: 0;
   transform: translateY(-50%);
   font-size: 16px;
-  color: #2c2b2b ;
+  color: var(--text-color-dark);
   transition: .5s;
 }
 
-.formGroup input:focus + label , 
-.formGroup input:valid + label {
-  top: -5px; /* Adjust this value based on your design */
-  color: #212020 ;
+.formGroup input:focus+label,
+.formGroup input:valid+label {
+  top: -5px;
+  /* Adjust this value based on your design */
+  color: #212020;
 }
 
-.formGroup  .input-icon{
-    position: absolute;
-    top: 50%;
-    right: 0;
-    font-size: 18px;
-    transform: translateY(-50%);
-    color: #2f2e41;
-    transition: .5s;
+.formGroup .input-icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-size: 18px;
+  transform: translateY(-50%);
+  color: #2f2e41;
+  transition: .5s;
 }
 
-.formGroup input:focus + .input-icon { /* Adjust this value based on your design */
-  color: #0064E0 ;
+.formGroup input:focus+.input-icon {
+  /* Adjust this value based on your design */
+  color: var(--secondary-color);
 }
-.formButton{
-  margin: 25px;
+
+.formButton {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 15px 0px;
 }
 
 .signupImageLink,
-.signinImageLink{
+.signinImageLink {
   background: white;
-  padding: 10px 20px;
-  border-radius: 20px; 
-  
+  padding: 10px 22px;
+  border-radius: 15px;
   border-width: 1px;
-  border-color: #0064E0;
+  border-color: var(--primary-color);
 }
 
-/* .label {
-  font-weight: bold;
-} */
-/* 
-input .input-box {
-  width: 100%;
+.signinbutton ,.signupbutton {
+  width: 310px;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-} */
-
-.button {
-  width: 100%;
-  padding: 10px;
-  background-color: #0064E0;
+  background-color: var(--primary-color);
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.button:disabled {
-  background-color: #ccc;
+.signinbutton:disabled {
+  background-color: var(--background-color-light);
   cursor: not-allowed;
 }
 
@@ -248,7 +233,7 @@ input .input-box {
 .valid {
   margin-left: 5px;
   font-size: 12px;
-   color: rgba(15, 126, 15, 0.848);
+  color: rgba(15, 126, 15, 0.848);
 }
 
 .invalid {
@@ -257,20 +242,7 @@ input .input-box {
   color: rgba(255, 59, 59, 0.889);
 }
 
-.errMsg{
-  /* background-color: red; */
-}
 
-.hide{
-   display: none;
-   /* border-color: red; */
-}
-
-.valid{
-  border: 1px soild green;
-}
-
-.offscreen{
+.offscreen {
   display: none;
 }
- 

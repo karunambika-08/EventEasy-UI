@@ -1,26 +1,33 @@
+// Packages and hooks
 import { useState, useRef, useEffect } from 'react';
-import '../styles/UserRegistration.css';
-import { FaCheck, FaInbox, FaInfoCircle, FaLock, FaLockOpen, FaMailBulk, FaMailchimp, FaTimes , FaUserAlt, FaUserCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
+import '../styles/UserRegistration.css';
+//Images and utils
 import welcomeIcon from  '../assets/welcome.svg'
 import loginIcon from  '../assets/login.svg'
-import Header from '../components/Header';
+import { FaCheck, FaInfoCircle, FaLock, FaMailchimp, FaTimes , FaUserAlt, FaUserCircle } from 'react-icons/fa'
+
+// Component
+import Header from '../components/Header'
+import { Toast } from '../utils/Notify';
+
+
+
+
+// Signin and Signup pages
+ function UserRegistration() {
 const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,24}$/;
-
-function UserAuthentication() {
-  
+  try {
   const [isLoginMode, setLoginMode] = useState(true)
   // const [toggle , setToggle] = useState(true)
   const navigate = useNavigate()
   const userRef = useRef()
   const errRef = useRef();
-
   const [user, setUser] = useState('')
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
   // const [isSignUpMode, setIsSignUpMode] = useState(false);
-
   const [email, setEmail] = useState('')
   const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
@@ -37,8 +44,7 @@ function UserAuthentication() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    localStorage.removeItem('currentUser');
-  localStorage.removeItem('userDetails');
+  
     console.log(userRef.current)
     userRef.current.focus();
 
@@ -46,21 +52,17 @@ function UserAuthentication() {
 
   useEffect(() => {
     const result = usernameRegex.test(user)
-    console.log(result);
-    console.log(user)
     setValidName(result)
   }, [user])
 
   useEffect(() => {
     const result = email
-    console.log(result);
+   
     setValidEmail(result)
   }, [email])
 
   useEffect(() => {
     const result = passwordRegex.test(pwd)
-    console.log(result);
-    console.log(pwd);
     setValidPwd(result);
     const match = pwd === matchpwd
     setValidMatchPwd(match)
@@ -75,7 +77,7 @@ function UserAuthentication() {
   }, [success])
 
   useEffect(() => {
-    console.log(errRef.current)
+    
     if (errMsg) {
       errRef.current.focus();
     }
@@ -97,42 +99,52 @@ function UserAuthentication() {
         , password: pwd
         , type: userType
       };
-      await fetch('api/signup', {
+      await fetch('/api/signup', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+         
+
         },
         body: JSON.stringify(userDetails),
-        credentials: 'include'
+       
       }).then(async (response) => {
         let jsonData = await response.json()
-        console.log('Json Data', jsonData);
+       
         if (response.status === 201) {
           setSuccess(true)
           setTimeout(()=>{
-            localStorage.setItem("currentUser", JSON.stringify(email));
+            localStorage.setItem("currentUser", JSON.stringify(jsonData.userId));
             localStorage.setItem("userDetails", JSON.stringify({username : user , userId : jsonData.userId}));
+            console.log("userTyoe", userType);
               if (userType === "eventsOwner") {
-                // showToast("Signed In Successfully", "success");
+               
+                 Toast.fire({
+                  icon: 'success',
+                  iconColor: 'success',
+                  title: 'Logged in Successfully as Events Owner',
+                })
                 navigate("/owner/dashboard");
               } else {
-                // showToast("Signed In Successfully", "success");
-                navigate("/user/dashboard");
+                Toast.fire({
+                  icon: 'success',
+                  iconColor: 'success',
+                  title: 'Logged in Successfully as Attendee',
+                })
+                navigate("/user/appointments");
               }
               setLoginMode(true)
               setEmail('')
               setUser('')
               setPwd('')
               setMatchPwd('')
-          }, 2000)
+          }, 3000)
          
         }
         if (response.status === 409) {
           setErrMsg("User Already Registered, Please Sign In")
           errRef.current.focus();
         }
-        // await userRedirect(response.status);
-        // setSuccess(true)
 
       }).catch((err) => {
         console.log("Error", err)
@@ -153,12 +165,12 @@ function UserAuthentication() {
   }
 
 
-
+  // SignIn api call
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
       // Send authentication request to server
-      const response = await fetch('api/signin', {
+      const response = await fetch('/api/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -169,31 +181,36 @@ function UserAuthentication() {
         }) 
       });
       const data = await response.json();
-      console.log("Data->", data);
-
-
       if (!(response.status === 200)) {
         setErrMsg("Invalid Email or Password")
         return
       }
       else if (response.status === 200 && (Object.keys(data.userDetails).length == 0 || data.userDetails === undefined)) {
-        console.log(response.userDetails == undefined, response.userDetails);
         setErrMsg("Please enter a valid email or Try Signing up")
         return
       }
 
-      let user = data.userDetails;
-      console.log("user", user);
-      if (user) {
-        localStorage.setItem("currentUser", JSON.stringify(user.email));
-        localStorage.setItem("userDetails", JSON.stringify(user));
+      let userInfo = data.userDetails;
+      if (userInfo) {
+        localStorage.setItem("currentUser", JSON.stringify(userInfo.userId));
+        localStorage.setItem("userDetails", JSON.stringify(userInfo));
 
-        if (user.type === "eventsOwner") {
-          // showToast("Signed In Successfully", "success");
+        if (userInfo.type === "eventsOwner") {
+          Toast.fire({
+            icon: 'success',
+            iconColor: 'success',
+            title: 'Logged in Successfully as Events Owner',
+          })
+      
           navigate("/owner/dashboard");
         } else {
-          // showToast("Signed In Successfully", "success");
-          navigate("/user/dashboard");
+          Toast.fire({
+            icon: 'success',
+            iconColor: 'success',
+            title: 'Logged in Successfully as Attendee',
+          })
+
+          navigate("/user/appointments");
         }
       } else {
         setErrMsg("Invalid Email or Password");
@@ -205,26 +222,10 @@ function UserAuthentication() {
       setErrMsg("Failed to authenticate");
     }
   }
-
-
-  //   async function userRedirect(responseStatus) {
-
-  //     console.log(responseStatus);
-  //     if(responseStatus === 201){
-  //         setSuccess(true)
-  //     }
-  //     // else if (responseStatus === 200) {
-  //     //     setErrMsg( "User Already Registered, Please Sign In")
-  //     // }
-
-  //     else {
-  //         setErrMsg("Please try again with valid Credentials")
-  //     }
-  // }
   return (
     <div className='userAuthentication'>
-
     <Header action='nouserName'></Header>
+
       <section className={`${"usercontainer"} `} >
         {
           isLoginMode ?
@@ -236,7 +237,6 @@ function UserAuthentication() {
                     <div className="signinform">
                       <h2 className='formTitle'>Sign In</h2>
                       <form onSubmit={handleSignIn} className="registerForm" id='loginForm' >
-
                         <p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live='assertive'>{errMsg}</p>
                         <div className="formGroup">
                           
@@ -254,19 +254,8 @@ function UserAuthentication() {
                           />
                           <label htmlFor="email">
                             Email
-                            {/* <span className={validEmail && email ? "valid" : "hide"}>
-                              <FaCheck />
-                            </span>
-                            <span className={validEmail || !email ? "hide" : "invalid"}>
-                              <FaTimes></FaTimes>
-                            </span> */}
                           </label>
                           <FaUserAlt  className='input-icon'/>
-
-                          {/* <p id='emailNote' className={emailFocus && !validEmail ? "instructions" : "offscreen"}>
-                            <FaInfoCircle />
-                            Please enter a valid Email Id
-                          </p> */}
                         </div>
                         <div className="formGroup">
                          
@@ -281,17 +270,11 @@ function UserAuthentication() {
                             onBlur={() => setPwdFocus(false)} />
                              <label htmlFor="password">
                             Password
-                            {/* <span className={validPwd && pwd ? "valid" : "hide"}>
-                              <FaCheck />
-                            </span>
-                            <span className={validPwd || !pwd ? "hide" : "invalid"}>
-                              <FaTimes></FaTimes>
-                            </span> */}
                           </label>
                           <FaLock className='input-icon'/>
                         </div>
                         <div className='formButton'></div>
-                        <button className='button' disabled={!validPwd || !validEmail ? true : false} id="signin">Sign In</button>
+                        <button className='signinbutton' disabled={!validPwd || !validEmail ? true : false} id="signin">Sign In</button>
                       </form>
                     </div>
                   
@@ -301,24 +284,15 @@ function UserAuthentication() {
                   <h2>Welcome Back</h2>
                  <img className='bannerIcon' src={welcomeIcon} alt="" />
                  <p style={{textAlign: 'center'}}> <h5>New to EventEasy ?</h5> <button className='signinImageLink' onClick={() => setLoginMode(false)}>Sign Up</button></p>
-
                   </div>
-
-                  {/* <div className="signinImage">
-                      <figure> <img src="" alt="" /></figure>
-                    </div> */}
               </section>
-
-
-
             ) : (
+              // Signup section
               <section className={"signup"}>
                   <div className="userImageContainer">
                   <h2>Welcome</h2>
-                 <img className='bannerIcon' src={loginIcon} alt="" />
-               
+                  <img className='bannerIcon' src={loginIcon} alt="" />
                       <p> <h5>One of us ?</h5> <button className="signupImageLink" onClick={() => setLoginMode(true)} id="signup">Sign In</button></p>
-
                   </div>
                 <div className={`${"container"}`}>
                   <div className="userTypeTabs">
@@ -326,8 +300,6 @@ function UserAuthentication() {
                     <div className="userTypeBtnBox">
                     <button className={userType === 'attendee' ? 'activeUserType' : '' } onClick={() => setUserType('attendee')}>Attendee</button>
                     <button className={userType === 'eventsOwner' ? 'activeUserType' : '' }   onClick={() => setUserType('eventsOwner')}>Events Owner</button>
-                  {/* {userType === "attendee" ? <p> <b>Event Owner ?</b> </p> : <p> <b>Attendee ?</b> </p>} */}
-                      
                     </div>
                   </div>
                   <div className="signupContent">
@@ -336,8 +308,6 @@ function UserAuthentication() {
                       <form onSubmit={handleSubmit} className="registerForm" id='registerForm'>
                         <p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live='assertive'>{errMsg}</p>
                         <div className="formGroup">
-                          
-
                           <input
                             type="text"
                             id="username"
@@ -447,18 +417,14 @@ function UserAuthentication() {
                             <FaInfoCircle /> Input doesn&apos;t match password field
                           </p>
                         </div>
-                        <div className="formGroup">
-                          <button className='button' disabled={!validName || !validPwd || !validEmail || !validMatchPwd ? true : false}>Sign Up</button>
+                        <div className="formGroup formButton">
+                          <button className='signupbutton' disabled={!validName || !validPwd || !validEmail || !validMatchPwd ? true : false}>Sign Up</button>
                          
                         </div>
                      
                       </form>
                     </div>
-                    {/* <div className="signupImage">
-                      <figure><img src="" alt="" /></figure>
-                      {userType === "attendee" ? <p>Event Owner ? <a onClick={() => setUserType('eventsOwner')}>Events Owner Sign up</a></p> : <p>Attendee ? <a onClick={() => setUserType('attendee')}>Attendee Sign up</a></p>}
-                      <p> Already Registered ?  <a className="signupImageLink" onClick={() => setLoginMode(true)} id="signup">Sign In</a></p>
-                    </div> */}
+                   
                   </div>
 
 
@@ -469,13 +435,16 @@ function UserAuthentication() {
 
             )
         }
-
-
-
       </section>
     </div>
-  );
+      );
+    
+  } catch (error) {
+    console.log(error);
+  }
+  
+
 }
 
-export default UserAuthentication;
+export default UserRegistration;
 

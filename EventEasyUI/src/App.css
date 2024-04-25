@@ -1,827 +1,1687 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Riot&family=Rubik+Burned&family=Single+Day&display=swap');
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-
+:root {
+  --primary-color: #0a66c2;
+  --secondary-color: #09509b;
+  --text-color-dark: #0b2546;
+  --text-color-light: ;
+  /* 500 */
+  --border-color: #09509b;
+  --text-color-light: #e1eefd;
+  /* 200 */
+  --background-color-light: #09509b;
+  --hover-color: #e1eefd;
+  --hover-color-light: #e1eefd;
+  --hover-text: #409EF0;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-family: "Noto Sans", sans-serif;
-    font-family: "Poppins", sans-serif;
-    /* background-color: hsl(0, 0%, 94%); */
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-button{
-    cursor: pointer;
+button:enabled{
+  cursor: pointer;
 }
 
-.sidebarcontainer{
-    display: flex;
+/* Layout Style */
+
+.mainLayoutContainer {
+  display: flex;
+  width: 100vw;
 }
 
-main{
-    width: 100%;
-    padding: 20px 0px;
+main {
+  width: 100%;
+  padding: 20px 0px;
 }
 
-.ownerSidebar{
-    background-color: white;
-    color : black;
-    height: 100vh;
-    width: 50px;
-    transition: all 0.6s;
-    transition: width 0.3 ease;
-    display: flex;
-
-    padding-top: 14px;
-    flex-direction: column;
-
+/* Loader */
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.top_section{
-    display : flex;
-    align-items: center;
-    padding : 20px 8px;
-
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  /* Change the color to your preference */
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
 
-.logo{
-    font-size : 25px
-}
-
-.bars{
-
-    display: flex;
-    font-size: 20px;
-    padding: 2px;
-    margin-left:50px;
-    cursor: pointer;
-}
-
-.link{
-    display: flex;
-    color: #d4dde3;
-    cursor: pointer;
-    margin-top: 20px;
-    padding: 10px 15px;
-    gap: 15px;
-    transition: all 0.3s ease;
-}
-
-/* .owner{
-  color : #bbc5cc ;
-}
-
-.owner.active{
-  color:#01565b;
-  border-right: 4px solid #5aba8a !important;
-} */
-
-
-.link:hover{
-    background-color: #edf3f8;
-    color: black;
-    transition: all 0.5s;
-}
-
-.active{
-    color: black;
-    border-right: 4px solid #0064E0;
-    background-color: #edf3f8;
-}
-
-.icon , .link_text{
-    font-size:  18px;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
-.navbarContainer{
+
+
+/* SideNav Style */
+.sidebarcontainer {
+  display: flex;
+  color: var(--text-color-dark);
+}
+
+.sidebar {
+  width: 50px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  
+  color: black;
+  transition: all 0.6s;
+  transition: width 0.3 ease;
+  padding-top: 14px;
+}
+
+.sidbarTopSection {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  padding: 20px 8px;
+}
+
+.sidebarlogoText {
+  font-weight: 600;
+  font-size: 30px;
+  background: rgb(47, 46, 65);
+  background: linear-gradient(90deg, rgba(47, 46, 65, 1) 0%, rgba(0, 100, 224, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.sidebar_Navbars {
+  display: flex;
+  font-size: 20px;
+  color: var(--text-color-dark);
+  padding: 2px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.sidebarLink {
+  display: flex;
+  color: #6e757a;
+  cursor: pointer;
+
+  margin-top: 20px;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.3s ease;
+}
+
+
+.sidebarLink:hover {
+  background-color: var(--hover-color);
+  color: var(--text-color-dark);
+  transition: all 0.5s;
+
+}
+
+/* See here */
+.active {
+  color: var(--text-color-dark);
+  border-right: 4px solid var(--primary-color);
+  background-color: #edf3f8;
+}
+
+.sidebaricon,
+.sidebarLinkText {
+  font-size: 18px;
+  
+}
+
+
+@media (max-width: 480px) {
+  .sidebarlogoText {
+    font-size: 22px;
+  }
+}
+
+/* Header Component */
+
+.mainHeaderContainer {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
-  position: sticky;
   margin-bottom: 5px;
-  /* padding: 10px; */
+  position: sticky;
   top: 0;
   z-index: 1;
-  font-weight: 600;
-  font-style: normal;
 }
 
-.navigation{
+.headerContent {
   width: 98%;
+  padding: 0px 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.logoContainer{
+.logoContainer {
   width: 35%;
   display: flex;
   align-items: center;
 }
 
-.logo{
-  font-weight: 700;
-  font-size: 34px;
-  background: rgb(47,46,65);
-background: linear-gradient(90deg, rgba(47,46,65,1) 0%, rgba(0,100,224,1) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+.headerLogo {
+  font-weight: 600;
+  font-size: 32px;
+  background: rgb(47, 46, 65);
+  background: linear-gradient(90deg, rgba(47, 46, 65, 1) 0%, rgba(0, 100, 224, 1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
 
 }
 
-.menulist{
+.currentUsernameContainer {
+  width: 12%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+  border-radius: 10px;
+
 }
 
-.menulist-items{
+
+
+.currentUserName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.currentUserName p {
+  color: var(--text-color-dark);
+  font-size: 18px;
+}
+
+
+.headerIcon {
+  margin-right: 5px;
+  background-color: var(--primary-color) !important;
+  padding: 10px;
+  font-size: 35px;
+  color: var(--text-color-light);
+  background-color: white;
+  border-radius: 100%;
+}
+
+
+.eventCardDetails {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .headerLogo {
+    font-size: 24px;
+  }
+
+  .currentUserName p {
+    font-size: 16px;
+  }
+
+  .headerContent {
+    width: 98%;
+  }
+
+  .currentUsernameContainer {
+    margin-right: 45px;
+  }
+}
+
+
+
+/* Owner Dashboard */
+.ownerDashboard {
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+
+
+.mainEventContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.eventsMainContainer {
+  width: 98%;
+  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.eventsHeaderContainer {
+  width: 100%;
+  height: 50px;
+  color: var(--text-color-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+
+.createAppointmentBtn {
+  border-radius: 10px;
+  height: 50px;
+  margin: 10px;
+  padding: 10px;
+  margin-right:18px ;
+  background-color: var(--primary-color);
+  /* box-shadow: 1px 1px #98c7ee; */
+  color: white;
+  font-size: 16px;
+}
+
+
+.eventFormoverlayContainer {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.eventFormpopup {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  box-shadow: 1px 1px var(--text-color-light);
+  border-radius: 15px;
+  transform: scale(0.8);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+
+
+/* Event State Container */
+
+.eventsStatetabs {
+  position: relative;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.eventsState {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 25px;
+}
+
+
+.activeEventStateTab {
+  color: var(--primary-color) !important;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.onGoing .displayOngoingEventTab,
+.completed .displayPastEventTab {
+  display: block;
+}
+
+.eventsState button {
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-color-dark);
+  padding: 14px 0px;
+  margin-right: 50px;
+  font-size: 20px;
+  font-weight: 600;
+
+}
+
+.eventsState button:hover {
+  background-color: #0065e000;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hideOngoingEventTab,
+.hidePastEventTab {
+  display: none;
+}
+
+.pastEventCard {
+  width: 80%;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px #b3b6ba;
   margin: 10px;
 }
 
-.menulist-items i {
-  background-color: #0064E0;
-}
-
-button.menulist-items{
-  padding: 8px;
-  width: 150px;
-  background-color:  #0064E0;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 1px 1px #0064E0 ;
-}
-
-.menubtn, .menubtn i{
-  font: 2rem;
-  font-weight: 550;
-}
-
-.menubtn:hover{
-  background-color: #aecbf0;
-  box-shadow: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-
-
-.userProfile{
+.pastEventCard p {
+  margin: 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  border: 1px solid #0064E0;
-  padding: 10px;
-  border-radius: 10px;
+  color: var(--text-color-dark);
+  width: 40%;
 }
 
-#userProfileName i{
+.pastEventCard h4 {
   margin: 5px;
-  padding: 8px;
-  border-radius:50% ;
-  font-size: larger;
-  color: white;
+  width: 35%;
+  color: var(--text-color-dark);
 }
 
-.userdropdown {
-  position: relative;
-  display: inline-block;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+.slots {
+  display: flex;
+  align-items: center;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+.slots .slotsImg {
+  margin: 5px;
+  color: #2e2d3e;
 }
 
-.dropdown-content button {
-  width: 100%;
-  text-align: center;
-  color: black;
-  /* min-width: 160px; */
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+.pastEventCard p svg {
+  margin-right: 8px;
+  /* color: white; */
+}
+
+.viewPastEvent {
+  width: 200px;
+  padding: 10px;
+  /* height: 40px; */
+  margin: 5px;
   border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  box-shadow: var(--background-color-light);
+  color: white;
+  font-size: 16px;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
 
-.userdropdown:hover .dropdown-content {display: block;}
-
-/* .userdropdown:hover .userProfile {background-color: #0064E0;} */
-
-.dropdownitems {
-  display: block;
-}
-
-.btnLogout{
+.noPastEventsContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #0064E0;
-  padding: 10px;
-  border-radius: 10px;
 }
 
-#logoutbtn{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #0064E0;
-  padding: 10px;
-  border-radius: 10px;
+.noPastEventsContainer img {
+  width: 20%;
+  height: 40%;
+  margin: 10px;
 }
 
-.cancelCreation{
-    font-size: 30px;
-    color: #0061AF;
-    background-color: white;
-}
-/* FormContainer ---> {formHeader}, {createAppointment} ,{confirmationPage -Display None}*/
-.formContainer{
-    /* font-size: large; */
-    font-size: 1.2em;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-    background-color: white;
-    border: 2px solid  #0061AF;
-    box-shadow: 1px 1px #a2c7e6 ;
-    border-radius: 15px;
-}
-
-.formHeader{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 2px solid  #0061AF;
-    box-shadow: 2px #82bff0 ;
-}
-.formHeading{
-   font-size: 2rem;
-  
-}
-
-#slotDuration{
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 1px solid #215f92;
-}
-
-.workingDays{
-    display: flex;
-    width: fit-content;
-    flex-direction: column;
-}
-
-.dayWiseSetting{
-    width: 700px;
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-}
-
-.dayTimegroup{
-    width: 310px;
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
-    /* padding: 10px; */
-}
-
-/* .day{
+@media (max-width: 720px) {
+  .noPastEventsContainer img {
     width: 40%;
-} */
-
-.breakTimeGroup{
-    width: 300px;
-    display: flex;
-    flex-direction: row;
+    height: 50%;
     margin: 10px;
+  }
 }
 
-label{
-    margin-right: 30px;
+
+/* FormContainer ---> {formHeader}, {createAppointment} ,{confirmationPage -Display None}*/
+.formContainer {
+  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
 }
 
-.day{
-    width: 70%;
+@media (max-width: 720px) {
+  .formContainer {
+    width: 400px;
+
+  }
 }
-.time{
-    display: flex;
-    flex-wrap: nowrap;
-   
+
+.formHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  color: var(--text-color-dark);
+  border-bottom: 2px solid var(--primary-color);
+  box-shadow: 2px var(--hover-color);
+}
+
+.formHeading {
+  font-size: 2rem;
+  color: var(--text-color-dark);
+}
+
+.cancelCreation {
+  font-size: 30px;
+  border: none;
+  color: var(--text-color-dark);
+  background:none;
+}
+
+
+/* CSS for ih-input container */
+.floating-label {
+  position: relative;
+  margin-top: 15px;
+}
+
+/* Label styles */
+.slotDurationLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: top 0.2s ease-out, font-size 0.2s ease-out, color 0.2s ease-out;
+}
+
+/* Select styles */
+.slotDurationInput {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  font-size: 18px;
+  padding: 8px 0;
+  width: 65%;
+  margin-top: 24px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Error message styles */
+.error {
+  color: #F02318;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+/* Styles for focus state */
+.slotDurationInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Optional: Dropdown arrow styles */
+.slotDurationInput::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #666;
+  transform: translateY(-50%);
+}
+
+/* Optional: Animation for label */
+.slotDurationInput:focus+.slotDurationLabel,
+.slotDurationInput:not(:placeholder-shown)+.slotDurationLabel {
+  top: -24px;
+  font-size: 12px;
+  color: var(--text-color-dark);
+}
+
+#eventAvailableDays {
+  margin: 8px 0px;
+  color: var(--text-color-dark);
+}
+
+.workingDays {
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+
+}
+
+.dayWiseSetting {
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+
+}
+
+
+
+.dayTimegroup {
+  width: 320px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+}
+
+
+.breakTimeGroup {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.day {
+  width: 75%;
+}
+
+.time {
+  display: flex;
+  flex-wrap: nowrap;
+
 }
 
 .workingDays p {
   margin: 0;
 }
 
-.workingDays .error{
+.workingDays .error {
   font-size: small;
   height: 20px;
   color: rgb(206, 67, 67);
 }
-.breakDuration{
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-input[type="checkbox"]{
-    margin: 2px;
-}
-
-input[type="time"]{
-    margin: 2px;
-    /* padding: 2px; */
-    border-radius: 5px;
-    border: 1.5px solid gray;
-}
 
 
-.time.error{
-    border-color: red;
+
+.breakDuration {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0px 8px;
 }
 
-.cancelCreation{
-    border: none;
+input[type="checkbox"] {
+  margin: 4px 3px 0;
+  line-height: normal;
+  width: 15px;
+  height: 15px;
+
 }
 
-.createAppointment{
-    display: flex;
-    flex-direction: column;
-}
-.formDetails{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+input[type="checkbox"]:checked {
+  background-color: var(--primary-color) !important;
 }
 
-.formBtnContainer{
-   
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+input[type="time"] {
+  margin: 0px 4px;
+  margin-right: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1.5px solid gray;
 }
 
-
-.formBtn{
-    width: 150px;
-    height: 50px;
-    padding: 10px;
-    background-color: #0061AF;
-    border: 2px solid  #0061AF;
-    border-radius: 10px;
-    box-shadow: 1px 1px #a2c7e6 ;
-    color: white;
-    font-size: 16px;
-    font-weight:500;
-}
-.basicDetails{
-    /* width: 30%; */
-    margin: 15px;
+.viewSwapContainer {
+  width: 100%;
+  margin: 18px 0px;
+  display: flex;
+  align-items: row;
 }
 
-.slotDetails{
-    width: 60%;
-    margin: 10px;
+.viewSwapContainer button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  margin-left: 12px;
 }
-.formGroup{
-  /* margin-top: 8px; */
+
+.viewSwapContainer button:hover {
+  background: var(--primary-color);
+  color: white;
+
+}
+
+.time.error {
+  border-color: red;
+}
+
+.createAppointment {
+  display: flex;
+  flex-direction: column;
+}
+
+.formDetails {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.formBtnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.progressBarContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.progressbar {
+  width: 500px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 20px;
+  margin: 50px 0px;
+}
+
+.progressbar div {
+  width: 33.3%;
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+}
+
+.eventDetailsTitle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.eventDetailsTitle button {
+  background: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.formBtn {
+  width: 150px;
+  height: 50px;
+  padding: 10px;
+  margin: 10px;
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  box-shadow: 1px 1px var(--text-color-light);
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.formContentHeader {
+  padding: 0px 10px;
+  color: var(--text-color-dark);
+}
+
+.basicDetails {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 10px;
+}
+
+.slotDetails {
+  width: 60%;
+  margin: 10px;
+  font-size: 18px;
+}
+
+.formGroup {
   line-height: 1.5;
-  /* overflow: hidden; */
 }
 
-.formGroup input{
-    width: 100%;
-    height: 30px;
-    padding: 0.5rem 0;
-    font-size: 1rem;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #215f92;
+.formGroup.ih-input label {
+  font-size: 18px;
+}
+
+.formGroup.ih-input input {
+  font-size: 18px;
+  width: 70%;
+}
+
+.ih-input label {
+  font-size: 18px;
+}
+
+.formGroup .Eventinput-icon {
+  position: absolute;
+  top: 50%;
+  right: 10;
+  font-size: 18px;
+  transform: translateY(-50%);
+  color: #2f2e41;
+  transition: .5s;
+}
+
+
+
+.formGroup input:focus+.Eventinput-icon {
+  color: var(--primary-color);
 }
 
 /* for Erorr */
-.formGroup .error{
-    font-size: small;
-    height: 20px;
-    color: rgb(206, 67, 67);
-}
-.formGroup.error input{
-    border-color:rgb(206, 67, 67);
-    /* font-size: 16px; */
-    margin-top: 1px;
+.formGroup .error {
+  font-size: small;
+  height: 20px;
+  color: rgb(206, 67, 67);
 }
 
-.formGroup.success input , .workingDays.success input{
-    border-color: #0cc477;
+.formGroup.error input {
+  border-color: rgb(206, 67, 67);
+  /* font-size: 16px; */
+  margin-top: 1px;
+}
+
+.formGroup.success input,
+.workingDays.success input {
+  border-color: #0cc477;
+}
+
+
+.enteredeventDetails {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.enteredeventDetails p b {
+  width: 200px;
+  color: var(--text-color-dark);
+}
+
+.formscheduleTable {
+  margin-left: 15px;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+.formscheduleTable td,
+.formscheduleTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.formscheduleTable tbody {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.scheduleTable tr:hover {
+  background-color: var(--hover-color);
+}
+
+.scheduleTable th {
+  text-align: left;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.scheduleTable {
+  margin-top: 10px;
+  margin-left: 35px;
+  border-collapse: collapse;
+  /* width: 100%; */
+  /* height: 100%; */
+}
+
+.scheduleTable td,
+.scheduleTable th {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.scheduleTable tbody {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.formscheduleTable tr:hover {
+  background-color: var(--hover-color);
+}
+
+.formscheduleTable th {
+  padding-top: 20px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+
+.formContentFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.enteredeventDetails p {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.enteredeventDetails .formConfirmationIcon {
+  margin: 3px;
+  color: var(--text-color-dark);
 }
 
 
 
-
-.appointmentstabs{
-
-    /* height: 450px; */
-    position: relative;
-  
-    overflow: hidden;
-  }
-  
-  .swapbtnBox{
-    display: flex;
-    border-bottom: 1px solid #ccc;
-  }
-
-  
-  .activeAppointmentTab{
-    color : #0064E0;
-    transition: background-color 0.3s, color 0.3s,box-shadow 0.3s; 
-  }
-
-  .tabContent .displayActiveTab{
-    display: block;
-  }
-  
-  .swapbtnBox button{
-    background: transparent;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    cursor: pointer;
-    padding: 14px 16px;
-    margin-right: 50px;
-    font-size: 20px;
-    font-weight: 600;
-  
-  }
-
-  .Booked{
-    color : #0064E0;
-  }
-
-  .Attended{
-    color: #0064E0;
-  }
-
-  .activeAppointmentTab .AppointmentstabIcon{
-    /* margin: 20px !important; */
-  }
-  
-  .btnBox button:hover{
-   background-color: #0065e000;  
-   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .tabContent{
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    margin: 3% auto;
-    /* position: absolute;
-    transform: translateX(100%); */
-  }
-  
- 
-/*   
-  #btn1{
-    color: #0064E0;
-  } */
-  
-
-  .hideInactiveTab{
-    display: none;
-  }
+.formChild {
+  height: 480px;
+}
 
 
-  .pastAppointmentsTable table{
-    margin: 10px;
-    /* border: 1px solid grey; */
-    border-collapse: collapse;
+
+/* EventCard Component Style */
+.eventsContainer {
+  width: 98%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+
+.eventCard {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  box-shadow: 1px 1px #b3b6ba;
+  margin: 15px 0px;
+  margin-right: 55px;
+
+}
+
+
+/* Media query for screens smaller than 768px (typical tablets) */
+@media (max-width: 1020px) {
+  .eventCard {
+    width: 40%;
+    padding: 10px;
+  }
+
+}
+
+/* Media query for screens smaller than 480px (typical smartphones) */
+@media (max-width: 650px) {
+  .eventCard {
     width: 100%;
+    padding: 5px;
+    margin-right: 0;
   }
 
-  .pastAppointmentsTable table td, .pastAppointmentsTable table th{
-    border: 1px solid #ddd;
-    padding: 15px;
+  .eventsState button {
+    font-size: 17px;
+    margin-right: 15px;
+  }
+
+  .eventsHeaderContainer h2 {
+    font-size: 18px;
+  }
+
+  .createAppointmentBtn {
+    font-size: 15px;
+    padding: 5px;
+
+  }
+}
+
+@media (min-width: 2000px) {
+  .eventCard {
+    width: 20%;
+    padding: 10px;
+  }
+}
+
+
+.eventCardHeader{
+ margin-left: 12px;
+  color: var(--text-color-dark);
+}
+
+
+.eventCardIcon {
+  font-size: 25px;
+  border-radius: 10%;
+  margin-right: 5px;
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  padding: 5px;
+}
+
+.eventCardDetails,
+.eventDetails {
+  padding: 10px;
+  margin: 5px 0px;
+  
+}
+
+.eventCardDetails p,
+.eventDetails p {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.eventCardDetails p b,
+.eventDetails p b {
+  display: inline-block;
+  width: 200px;
+  margin: 0px 8px;
+  color: var(--text-color-dark);
+}
+
+.eventCardDetails p svg,
+.eventDetails p svg {
+  color: white;
+  background-color: var(--primary-color);
+  font-size: 25px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+
+.manipulateCard {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.editEvent,
+.deleteEvent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: var(--primary-color);
+  margin-right: 10px;
+  font-size: 23px;
+  background: none;
+}
+
+.editEvent:hover,
+.deleteEvent:hover {
+  font-size: 25px;
+}
+
+
+
+.bookedAppointmentsDetails{
+    width: 830px;
+}
+
+.bookedAppointmentsDetails h3,
+.noofappointments{
+  color: var(--text-color-dark);
+}
+.viewEvent {
+  width: 150px;
+  padding: 5px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  box-shadow: #7b9bb5;
+  color: white;
+  font-size: 16px;
+  margin-left: auto;
+}
+
+/* User Appointments */
+.displayAppointments {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.eventDetailsHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.eventDetailsHeader h2 {
+  margin-left: 10px;
+  color: var(--text-color-dark);
+}
+
+.appointmentsHeaderContainer {
+  padding: 20px 18px;
+  color: var(--text-color-dark);
+}
+
+.appointmentsHeader {
+  font-size: 20px;
+}
+
+.appointmentstabs {
+  position: relative;
+  overflow: hidden;
+}
+
+.appointmentState {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+
+.activeAppointmentTab {
+  color: var(--primary-color) !important;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.appointmenttabContent .displayActiveTab {
+  display: block;
+}
+
+.appointmentState button {
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: var(--text-color-dark);
+  cursor: pointer;
+  padding: 14px 16px;
+  margin-right: 50px;
+  font-size: 20px;
+  font-weight: 600;
+
+}
+
+.eventDetailsContainer {
+  display: flex;
+  flex-direction: column;
+
+
+  width: 98%;
+  padding: 30px;
+
+}
+
+.eventcontainerBody {
+  width: 90%;
+  height: 75vh;
+  display: flex;
+  margin-left: 50px;
+  margin-top: 10px;
+  /* padding: 20px; */
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+}
+
+.eventDetailsImg {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #0061AF; */
+  border-radius: 10px 40px 40px 10px;
+  background: rgb(226, 224, 255);
+  background: linear-gradient(90deg, rgba(226, 224, 255, 1) 0%, rgba(0, 100, 224, 1) 100%);
+}
+
+.eventDetailsImg img {
+  width: 80%;
+
+
+}
+
+
+
+.Booked {
+  color: var(--primary-color);
+}
+
+.Attended {
+  color: var(--primary-color);
+}
+
+.activeAppointmentTab .AppointmentstabIcon {
+  /* margin: 20px !important; */
+}
+
+.btnBox button:hover {
+  background-color: #0065e000;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.appointmenttabContent {
+  margin: 1.5% auto;
+}
+
+
+
+
+
+
+.tabs {
+
+  /* height: 450px; */
+  position: relative;
+
+  overflow: hidden;
+}
+
+.btnBox {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+
+}
+
+
+.activeTab {
+  color: var(--primary-color);
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.content .displayTab {
+  display: block;
+}
+
+.btnBox button {
+  background: transparent;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 14px 16px;
+  margin-right: 50px;
+  font-size: 20px;
+  font-weight: 600;
+
+}
+
+
+.activeTab .tabIcon {
+  margin: 20px !important;
+}
+
+.btnBox button:hover {
+  background-color: #0065e000;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  margin: 3% auto;
+}
+
+
+
+
+.hideTab {
+  display: none;
+}
+
+
+
+
+.eventDetails {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding: 3px 25px;
+  /* justify-content: center;*/
+}
+
+
+
+.noEventsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noEventsContainer img {
+  width: 50%;
+  height: 50%;
+  margin: 10px;
+}
+
+.overlayContainer {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupBox {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  box-shadow: 1px 1px #a2c7e6;
+  border-radius: 15px;
+  transform: scale(0.8);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.hideInactiveTab {
+  display: none;
+}
+
+
+.attendeeEvents .eventsContainer {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+  margin: 0px 8px;
+  padding: 0px 10px;
+}
+
+.pastAppointmentsTable table {
+  margin: 10px;
+  /* border: 1px solid grey; */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.pastAppointmentsTable table td,
+.pastAppointmentsTable table th {
+  border: 1px solid #ddd;
+  padding: 15px;
 }
 
 .pastAppointmentsTable th {
   padding-top: 20px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #0061AF;
+  background-color: var(--primary-color);
   color: white;
-}
-.bookedAppointmentsContainer{
-    width: 80%;
-    padding: 0px 15px;
-    /* max-height: 800px; */
+  border-radius: 10%;
 }
 
-.deleteButton{
+
+
+.bookedAppointmentsContainer,.pastAppointmentsContainer {
+  padding: 5px 10px;
+  width: 98%;
+  margin: 10px;
+  /* max-height: 800px; */
+}
+
+.bookedAppointmentssubheader,.pastAppointmentssubHeader{
+  color: var(--text-color-dark);
+  font-size: 17px;
+}
+
+
+.deleteButton {
   background-color: white !important;
-  border: 1px solid #0064E0 !important;
+  border: 1px solid var(--primary-color) !important;
 }
 
-.deleteButton:hover{
-  background-color: #0064E0 !important;
-  border: 1px solid #0064E0 !important;
+.deleteButton:hover {
+  background-color: var(--primary-color) !important;
+  border: 1px solid var(--primary-color) !important;
   color: white !important;
 }
 
-#bookedAppointmentsTable{
-    margin: 10px;
-    border-collapse: collapse;
-    width: 100%;
-    height: 100%;
-    
+.noofappointments{
+  margin: 10px 0px;
+}
+
+.bookedAppointmentsTable {
+  margin-top: 15px;
+  /* margin: 10px; */
+  border-collapse: collapse;
+  width: 80%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
 
+@media (max-width: 600px) {
+  .bookedAppointmentsTable {
+    width: 10%;
 
-#bookedAppointmentsTable td, #bookedAppointmentsTable th{
-    border: 1px solid #ddd;
-    padding: 10px;
+  }
+
+  .bookedAppointmentsTable thead tr {
+    font-size: 12px;
+  }
+
+  .bookedAppointmentsTable td {
+    padding: 5px;
+  }
 }
-/* 
-#bookedAppointmentsTable tr:nth-child(even){background-color: #f2f2f2;}
 
-#bookedAppointmentsTable tr {
-    border: 1px solid gray;
-} */
 
-#bookedAppointmentsTable tbody{
+.bookedAppointmentsTable thead tr {
+  color: #ffffff;
+  text-align: left;
+  font-size: 14px;
+  background-color: var(--primary-color);
+}
+
+
+.bookedAppointmentsTable td,
+.bookedAppointmentsTable th {
+  border: 1px solid #ddd;
+  padding: 15px 10px;
+}
+
+.bookedAppointmentsTable tbody {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 
-#bookedAppointmentsTable tr:hover {background-color: #ddd;}
-
-#bookedAppointmentsTable th {
-    padding-top: 20px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #0061AF;
-    color: white;
+.bookedAppointmentsTable tbody tr:hover {
+  background-color: #ddd;
 }
 
-.appointmentDelBtn{
-   text-decoration: none;
-   font-size: 15px;
-   color: #0061AF;
-   background: none;
-   /* border: 1px solid #0061AF ; */
+
+
+.bookedappointmentDelBtn,
+.appointmentDelBtn {
+  text-decoration: none;
+  font-size: 15px;
+  color: rgb(114, 114, 114);
 }
 
-#noappointmentsContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#noappointmentsContainer {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#noappointmentsContainer img{
-    width: 15%;
-    height: 15%;
+#noappointmentsContainer img {
+  width: 15%;
+  height: 15%;
+  margin: 30px 0px;
 }
 
-.abtn{
- text-align: center;
- text-decoration: none;
- background: none;
- border: none;
+.abtn {
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border: none;
 }
 
 /* Main display Container */
 .mainEventsContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #fdfdfd;
-  }
-
-.aheaderContainer {
-    width: 100%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    padding: 0px 10px;
-    font-weight: 600;
-    font-style: normal;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdfdfd;
+  padding: 5px;
 }
 
-.aheaderContainer h3 {
-    background-color: #ffffff;
-    margin-left: 35px;
+.attendeeEventsheaderContainer {
+  width: 97%;
+  background-color: #ffffff;
+  display: flex;
+  margin-top: 28px;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  padding: 0px 10px;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--text-color-dark);
+}
+
+.attendeeEventsheaderContainer h3 {
+  background-color: #ffffff;
+  margin-left: 12px;
+  font-size: 22px;
+
 }
 
 .attendeeMainEventsDashboard {
-    width: 100%;
-    height: 90%;
-    display: flex;
-    background-color: #fdfeff;
-    overflow-y: scroll;
-  }
-  
-  #calenderViewBtn{
-    font-size: medium;
-    border :  1px solid #0064E0;
-    border-radius: 10px;
-    background: none;
-    margin-right: 45px;
-    padding: 10px;
-  }
-  
-  .atteendeedisplayEvent {
-    width: 100%;
-  }
-  
-  .aeventsContainer {
-    width: 100%;
-    margin: 2px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0px 20px;
-  }
-  
-  .aeventsContainer div {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    border: 2px solid #a8b6c6;
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 0061AF;
-    margin: 30px 25px;
-  }
-  
-  .aEventCard p{
-    margin: 15px;
-  }
-  .aEventCard p i{
-    margin-right: 10px ;
-    background-color: #0064E0;
-    padding: 10px;
-    color: white;
-    border-radius: 35%;
-  }
- 
-  .aeventsContainer div button {
-    width: 50%;
-    padding: 5px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #0061AF;
-    color: white;
-    font-size: 16px;
-    display: inline;
-    margin-top: auto;
-    margin-left: auto;
-    margin-top: auto;
-  }
-  
-
-  .bookingContainer{
-    /* height: 93vh; */
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-  }
-  .eventdetailsContainer{
-    width: 99%;
-    /* height: 60%; */
-    display: flex;
-  }
-  .edetailsContainer{
-    width: 410px;
-    height: 210px;
-    padding: 20px;
-    /* background-color: #82bff0; */
-    border : 2px solid #0064E0;
-    margin: 2px;
-    border-radius: 10px;
-  }
-/* 
-  .edetailsContainer{
-    width: 70%;
-    height: 210px;
-    /* background-color: #0064E0; */
-    /* border : 2px solid #0064E0; */
-    /* margin: 2px; */
-  /* } */ 
-
-  .appointmentsBookingContainer{
-    display: flex;
-    flex-direction: column;
-    width: 99%;
-  }
-
-  .appointmentsCalender{
-    display: flex;
-  }
-
-  /* .appointmentsCalender{
-    width: 410px;
-    height: 450px;
-    background-color: #b3f3d8;
-    border : 2px solid #0064E0;
-    margin: 2px;
-  } */
-  /* App.css */
-.calendar-container {
+  width: 100%;
+  height: 90%;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  background-color: #fdfeff;
+  overflow-y: scroll;
 }
 
-.calendar {
-  width: 450px;
-  /* height: 450px; */
-  margin-right: 20px;
+#calenderViewBtn {
+  font-size: medium;
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  background: none;
+  margin-right: 45px;
+  padding: 10px;
 }
 
-.event-badge {
-  color: red;
-  font-weight: bold;
-  /* top: 0; */
+.atteendeedisplayEvent {
+  width: 100%;
 }
 
-.event-details {
-  flex-grow: 1;
+.aeventsContainer {
+  width: 100%;
+  margin: 2px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0px 20px;
 }
 
-.event-details h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+.aeventsContainer div {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 2px solid #a8b6c6;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 0061AF;
+  margin: 30px 25px;
 }
 
-.event-details ul {
-  list-style-type: none;
-  padding: 0;
+.aEventCard p {
+  margin: 15px;
 }
 
-.event-details li {
+.aEventCard p i {
+  margin-right: 10px;
+  background-color: var(--primary-color);
+  padding: 10px;
+  color: white;
+  border-radius: 35%;
+}
+
+.aeventsContainer div button {
   width: 50%;
-  margin-bottom: 5px;
+  padding: 5px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  display: inline;
+  margin-top: auto;
+  margin-left: auto;
+  margin-top: auto;
 }
 
-.appointmentsAvailable{
+
+.bookingContainer {
+  padding: 2px;
   display: flex;
   flex-direction: column;
 }
 
-.appointmentsAvailable li{
+.eventdetailsContainer {
+  width: 99%;
+  display: flex;
+}
+
+
+.appointmentsBookingContainer {
+  display: flex;
+  flex-direction: column;
+  width: 99%;
+}
+
+.appointmentsCalender {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+
+/* Calendar */
+.calendar-container {
+  display: flex;
+  
+  
+}
+
+@media (max-width: 1280px) {
+  .calendar-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+  }
+
+  .calendar {
+    width: 100% !important;
+    margin-right: 20px;
+  }
+
+}
+
+.calendar {
+  width: 550px !important;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.event-badge {
+  color: var(--secondary-color);
+  font-weight: bold;
+  font-size: 16px;
+  /* top: 0; */
+}
+
+.slot-details {
+  flex-grow: 1;
+  width: 800px;
+}
+
+.slot-details h3 {
+  color: var(--text-color-dark);
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.slot-details hr {
+  margin-bottom: 8px;
+}
+
+
+.slot-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.slot-details li {
+  width: 40%;
+  margin: 10px 15px;
+
+}
+
+.appointmentsAvailable {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+}
+
+.appointmentsAvailable li {
   display: flex;
   flex-direction: row;
-  border: 1px solid #0061AF;
+  border: 1px solid var(--primary-color);
   border-radius: 10px;
 }
 
-.appointmentsAvailable li p{
+.appointmentsAvailable li p {
   margin: 20px;
   width: 60%;
 }
-.appointmentsAvailable li button{
+
+.appointmentsAvailable li button {
   margin: 20px;
   width: 100px;
   padding: 5px;
-  background-color: #0064E0;
+  background-color: var(--primary-color);
   font-size: 1em;
   border: none;
   color: white;
@@ -829,14 +1689,60 @@ input[type="time"]{
 
 }
 
-.noAppointments{
+.miniCalendar {
   display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+
 }
 
-.noAppointments img{
+.mcdateDay {
+  background-color: var(--primary-color);
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+}
+
+.mcdate {
+  font-size: 18px;
+  font-weight: 700;
+
+}
+
+.mcmonth {
+  font-size: 18px;
+  font-weight: 700;
+
+}
+
+.mcdateDay,
+.mcmonthYear {
+  width: 50%;
+  padding: 5px;
+}
+
+.mcdateDay p,
+.mcmonthYear p {
+  margin-bottom: 5px;
+}
+
+.appointmentsSubheader {
+  color: var(--text-color-dark);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.noAppointments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.noAppointments img {
   width: 30%;
   height: 20%;
 
@@ -850,7 +1756,8 @@ input[type="time"]{
   width: 100%;
   height: 100%;
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -873,7 +1780,7 @@ input[type="time"]{
 }
 
 .bookingModelContent input {
-  
+
   margin-bottom: 10px;
   padding: 8px;
   border: 1px solid #ccc;
@@ -884,7 +1791,7 @@ input[type="time"]{
   margin-left: auto;
   width: 180px;
   padding: 8px 16px;
-  background-color: #0061AF;
+  background-color: var(--primary-color);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -892,65 +1799,208 @@ input[type="time"]{
 }
 
 .bookingModelContent button:hover {
-  background-color: #0061AF;
+  background-color: var(--secondary-color);
 }
 
-.bookingModelHeader{
+.bookingModelHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.bookingModelDetailsContainer{
+.bookingModelDetailsContainer {
   display: flex;
   flex-direction: column;
-  border: 1px solid #0064E0;
+  border: 1px solid var(--primary-color);
   padding: 10px;
   border-radius: 10px;
   margin: 8px;
 }
 
-.bookingModelDetailsContainer p{
+.bookingModelDetailsContainer p {
   display: flex;
-  /* justify-content: center; */
   margin-top: 3px;
 }
+
 .bookingModelDetailsContainer .modelIcon {
   margin-right: 4px;
   font-size: 35px;
-  background-color: #0064E0;
+  background-color: var(--primary-color);
   border-radius: 5px;
   padding: 10px;
   color: white;
 }
 
-.react-calender{
-  width: 550px !important;
-  margin: 2px;
-  border: 2px solid #0064E0 !important;
-  padding: 5px !important;
-}
-.react-calendar button{
-  padding: 20px !important;
-   /* margin: 5px !important; */
+
+.react-calendar__navigation button {
+  font-size: 18px;
+  background: var(--primary-color) !important;
+  padding: 10px !important;
+  color: white;
 }
 
-
-.react-calendar button abbr{
-  /* background: #0061AF; */
-  /* padding: 20px; */
-  /* text-align: center; */
+.react-calendar {
+  width: 100% !important;
+  background: white;
+  border: 2px solid var(--primary-color) !important;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
 }
 
-.react-calendar__tile--now{
-  background-color: #0a569349 !important;
-  border-radius:20%;
+.react-calendar--doubleView {
+  width: 700px;
 }
 
-.react-calendar__tile--active{
-  background-color: #0064E0 !important;
-  border-radius:20%;
+.react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: -0.5em;
 }
-.react-calendar__tile:hover{
-  border-radius: 20%;
+
+.react-calendar--doubleView .react-calendar__viewContainer>* {
+  width: 50%;
+  margin: 0.5em;
+}
+
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.react-calendar button {
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  margin-bottom: 1em;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font: inherit;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em;
+}
+
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #888 !important;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth,
+.react-calendar__decade-view__years__year--neighboringDecade,
+.react-calendar__century-view__decades__decade--neighboringCentury {
+  color: #757575;
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em 0.5em;
+}
+
+.react-calendar__tile {
+  border-radius: 5px;
+  padding: 20px 6.6667px !important;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+  font: inherit;
+  font-size: 0.833em;
+}
+
+.react-calendar__tile:disabled {
+  background: none !important;
+  color: #ababab;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth:disabled,
+.react-calendar__decade-view__years__year--neighboringDecade:disabled,
+.react-calendar__century-view__decades__decade--neighboringCentury:disabled {
+  color: #cdcdcd;
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: var(--hover-color) !important;
+  transition: .5s;
+}
+
+.react-calendar__tile:enabled:focus {
+  background-color: var(--primary-color) !important;
+
+
+}
+
+.react-calendar__tile--now {
+  background: var(--secondary-color) !important;
+  color: white !important;
+
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: var(--hover-color) !important;
+
+}
+
+.react-calendar__tile--hasActive {
+  background: var(--primary-color) !important;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: var(--hover-color);
+}
+
+.react-calendar__tile--active {
+  background: var(--primary-color);
+  color: white !important;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: var(--hover-color);
+}
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #e6e6e6;
 }

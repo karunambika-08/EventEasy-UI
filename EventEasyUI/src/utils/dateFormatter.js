@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 // Setting session Duration
 function setSessionDuration(duration) {
     let durationInput = Number(duration);
@@ -67,4 +69,11 @@ function mergeDateAndTimeInput(dateInput, timeInput) {
     const dateTime = date.setHours(parseInt(hours, 10), parseInt(mins, 10), 0, 0);
     return dateTime;
   }
-export { formatForSpecificDate , formatDate , setSessionDuration, mergeDateAndTimeInput}
+
+
+  const convertEpochToFormattedDate = (epochTime) => {
+    const formattedDate = moment(parseInt(epochTime)).format('YYYY-MM-DD');
+    console.log('Converted Date:', formattedDate);
+    return formattedDate;
+  };
+export { formatForSpecificDate , formatDate , setSessionDuration, mergeDateAndTimeInput,convertEpochToFormattedDate}
